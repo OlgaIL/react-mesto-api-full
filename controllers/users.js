@@ -17,14 +17,14 @@ const getUser = (req, res) => {
       const findUser = data.find((user) => user._id === id);
       return findUser;
     })
-    // eslint-disable-next-line consistent-return
+
     .then((user) => {
       if (!user) {
         return res.status(404).send({ message: 'Нет пользователя с таким id' });
       }
-      res.send(user);
+      return res.send(user);
     })
-    .catch((err) => res.send(err));
+    .catch(() => res.send({ message: 'Ошибка чтения файла' }));
 };
 
 module.exports = { getUsers, getUser };

@@ -6,7 +6,7 @@ const usersDataPath = path.join(__dirname, '..', 'data', 'users.json');
 const getUsers = (req, res) => {
   readFile(usersDataPath)
     .then((data) => res.send(data))
-    .catch((err) => res.send(err));
+    .catch(() => res.status(500).send({ message: 'Ошибка чтения файла' }));
 };
 
 const getUser = (req, res) => {
@@ -24,7 +24,7 @@ const getUser = (req, res) => {
       }
       return res.send(user);
     })
-    .catch(() => res.send({ message: 'Ошибка чтения файла' }));
+    .catch(() => res.status(500).send({ message: 'Ошибка чтения файла' }));
 };
 
 module.exports = { getUsers, getUser };

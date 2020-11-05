@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 const userRout = require('./routes/users.js');
 const cardsRout = require('./routes/cards.js');
@@ -17,10 +18,21 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useFindAndModify: false,
 });
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+/** можно попробовать без bodyParser установки */
+// app.use(express.urlencoded({ extended: true }));
+// app.use(express.json());
+
+app.use(bodyParser.json()); // для собирания JSON-формата
+app.use(bodyParser.urlencoded({ extended: true })); // для приёма веб-страниц внутри POST-запроса
 
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use((req, res, next) => {
+  req.user = {
+    _id: '5fa438c944b74d08949df744', // вставьте сюда _id созданного в предыдущем пункте пользователя
+  };
+  next();
+});
 
 app.use('/users', userRout);
 app.use('/cards', cardsRout);

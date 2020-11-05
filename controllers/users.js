@@ -1,30 +1,32 @@
-const path = require('path');
-const readFile = require('../utils/read-file.js');
+/* eslint-disable no-console */
+const User = require('../models/user');
 
-const usersDataPath = path.join(__dirname, '..', 'data', 'users.json');
+const createUser = (req, res) => {
+  const { name, about, avatar } = req.body;
+  console.log(req.body);
+
+  User.create({ name, about, avatar })
+    .then((user) => res.send({ data: user }))
+    .catch((err) => res.status(500).send({ message: `Произошла ошибка ${err}` }));
+};
+
+/** const usersDataPath = path.join(__dirname, '..', 'data', 'users.json'); */
 
 const getUsers = (req, res) => {
-  readFile(usersDataPath)
-    .then((data) => res.send(data))
-    .catch(() => res.status(500).send({ message: 'Ошибка чтения файла' }));
+  User.find({})
+    .then((users) => res.status(200).send(users))
+    .catch((err) => res.status(500).send({ message: `Произошла ошибка ${err}` }));
 };
 
 const getUser = (req, res) => {
-  const { id } = req.params;
-
-  readFile(usersDataPath)
-    .then((data) => {
-      const findUser = data.find((user) => user._id === id);
-      return findUser;
-    })
-
+  User.findById(req.params.id)
     .then((user) => {
       if (!user) {
-        return res.status(404).send({ message: 'Нет пользователя с таким id' });
+        return res.status(404).send({ message: `Нет пользователя с таким id ${req.params.id}` });
       }
-      return res.send(user);
+      return res.status(200).send(user);
     })
-    .catch(() => res.status(500).send({ message: 'Ошибка чтения файла' }));
+    .catch(() => res.status(500).send({ message: 'Ошибка чтения базы данных' }));
 };
 
-module.exports = { getUsers, getUser };
+module.exports = { getUsers, getUser, createUser };

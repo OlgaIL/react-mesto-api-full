@@ -8,11 +8,6 @@ const cardSchema = new mongoose.Schema({
     default: [],
   },
 
-  _id: {
-    type: String,
-    required: true,
-  },
-
   name: {
     type: String,
     required: true,
@@ -23,7 +18,13 @@ const cardSchema = new mongoose.Schema({
   link: {
     type: String,
     required: true,
-    maxlength: 20,
+    validate: {
+      validator(v) {
+        // eslint-disable-next-line no-useless-escape
+        return /^https?:\/\/([w{3}\.]?)([a-z0-9\-]+\.)+(ru)(\/[\w.]*)*.*#?$/gi.test(v);
+      },
+      message: 'Ошибка в пути к файлу изображения',
+    },
 
   },
 

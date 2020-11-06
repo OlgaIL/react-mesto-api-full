@@ -1,5 +1,5 @@
 const express = require('express');
-const path = require('path');
+// const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
@@ -25,11 +25,12 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 app.use(bodyParser.json()); // для собирания JSON-формата
 app.use(bodyParser.urlencoded({ extended: true })); // для приёма веб-страниц внутри POST-запроса
 
-app.use(express.static(path.join(__dirname, 'public')));
+//* *для подключения фронтенда */
+// app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
   req.user = {
-    _id: '5fa438c944b74d08949df744', // вставьте сюда _id созданного в предыдущем пункте пользователя
+    _id: '5fa58ad2d93ecf14d038f185', // вставьте сюда _id созданного в предыдущем пункте пользователя
   };
   next();
 });

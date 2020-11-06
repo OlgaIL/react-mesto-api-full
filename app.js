@@ -25,7 +25,7 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 app.use(bodyParser.json()); // для собирания JSON-формата
 app.use(bodyParser.urlencoded({ extended: true })); // для приёма веб-страниц внутри POST-запроса
 
-//* *для подключения фронтенда */
+/** для подключения фронта */
 // app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {

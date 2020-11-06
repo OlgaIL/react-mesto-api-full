@@ -8,7 +8,11 @@ const createUser = async (req, res) => {
     const user = await User.create({ name, about, avatar });
     res.status(200).send(user);
   } catch (err) {
-    res.status(500).send({ message: `Произошла ошибка ${err}` });
+    if (err.name === 'ValidationError') {
+      res.status(400).send({ message: 'Переданы некорректные данные в метод создания пользователя' });
+    } else {
+      res.status(500).send({ message: 'Произошла ошибка на сервере' });
+    }
   }
 };
 
@@ -19,7 +23,7 @@ const getUsers = async (req, res) => {
     const users = await User.find({});
     res.status(200).send(users);
   } catch (err) {
-    res.status(500).send({ message: `Произошла ошибка ${err}` });
+    res.status(500).send({ message: 'Произошла ошибка на сервере' });
   }
 };
 
@@ -27,11 +31,14 @@ const getUser = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     if (!user) {
-      res.status(404).send({ message: `Нет пользователя с таким id ${req.params.id}` });
-    }
-    res.status(200).send(user);
+      res.status(404).send({ message: 'Пользователь не найден' });
+    } else { res.status(200).send(user); }
   } catch (err) {
-    res.status(500).send({ message: `Ошибка чтения базы данных ${err}` });
+    if (err.name === 'CastError') {
+      res.status(404).send({ message: 'Нет пользователя с таким id' });
+    } else {
+      res.status(500).send({ message: 'Произошла ошибка на сервере' });
+    }
   }
 };
 

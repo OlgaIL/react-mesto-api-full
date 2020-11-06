@@ -25,7 +25,7 @@ const userSchema = new mongoose.Schema({
         // eslint-disable-next-line no-useless-escape
         return /^https?:\/\/([w{3}\.]?)([a-z0-9\-]+\.)+(ru)(\/[\w.]*)*.*#?$/gi.test(v);
       },
-      message: 'Ошибка в пути к файлу',
+      message: 'Ошибка в пути к файлу изображения',
     },
   },
 

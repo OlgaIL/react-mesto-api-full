@@ -35,7 +35,7 @@ const getUser = async (req, res) => {
     } else { res.status(200).send(user); }
   } catch (err) {
     if (err.name === 'CastError') {
-      res.status(404).send({ message: 'Нет пользователя с таким id' });
+      res.status(400).send({ message: 'Не коррректный id' });
     } else {
       res.status(500).send({ message: 'Произошла ошибка на сервере' });
     }

@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 const mongoose = require('mongoose');
 
 const cardSchema = new mongoose.Schema({
@@ -19,8 +20,7 @@ const cardSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator(v) {
-        // eslint-disable-next-line no-useless-escape
-        return /^https?:\/\/([w{3}\.]?)([a-z0-9\-]+\.)+(ru)(\/[\w.]*)*.*#?$/gi.test(v);
+        return /^https?:\/\/([w{3}\.]?)([a-z0-9\-]+\.)+([a-z]{2,6})(\/.*)*$/gi.test(v);
       },
       message: 'Ошибка в пути к файлу изображения',
     },

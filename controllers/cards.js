@@ -29,10 +29,10 @@ const deleteCard = async (req, res) => {
     const card = await Card.findByIdAndRemove(req.params.id);
     if (!card) {
       res.status(404).send({ message: 'Карточка с введенным id не найдена' });
-    } else { res.status(200).send('Карточка удалена'); }
+    } else { res.status(200).send({ message: 'Карточка удалена' }); }
   } catch (err) {
     if (err.name === 'CastError') {
-      res.status(404).send({ message: 'Нет карточки с введенным id' });
+      res.status(400).send({ message: 'Не корректный id' });
     } else {
       res.status(500).send({ message: 'Произошла ошибка на сервере' });
     }

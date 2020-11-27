@@ -11,8 +11,6 @@ const cardsRout = require('./routes/cards.js');
 const errorRout = require('./routes/error.js');
 const authRouter = require('./routes/auth.js');
 
-
-
 const auth = require('./middlewares/auth.js');
 const errHendle = require('./middlewares/error.js');
 
@@ -39,7 +37,6 @@ app.use(bodyParser.urlencoded({ extended: true })); // для приёма ве�
 
 app.use(requestLogger); // подключаем логгер запросов
 
-
 // роуты, не требующие авторизации,
 // например, регистрация и логин
 app.use('/', authRouter);
@@ -52,7 +49,6 @@ app.use('/cards', cardsRout);
 app.all('*', errorRout);
 
 app.use(errorLogger); // подключаем логгер ошибок
-
 
 app.use(errors()); // обработчик ошибок celebrate
 app.use(errHendle);

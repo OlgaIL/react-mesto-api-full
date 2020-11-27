@@ -32,7 +32,7 @@ const deleteCard = async (req, res, next) => {
     if (String(cardSelected.owner._id) !== req.user._id) throw new ConflictError('Нет прав на удаление карточки');
 
     const card = await Card.findByIdAndRemove(req.params.id);
-    if (card) { res.status(200).send({ message: 'Карточка удалена' });}
+    if (card) { res.status(200).send({ message: 'Карточка удалена' }); }
   } catch (err) {
     if (err.name === 'CastError') next(new NoValideDataError('Не корректный id'));
     next(err);

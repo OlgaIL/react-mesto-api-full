@@ -43,9 +43,10 @@ const login = (req, res, next) => {
       // вернём токен
       res.send({ token });
     })
+    // eslint-disable-next-line no-unused-vars
     .catch((err) => {
       // ошибка аутентификации
-     // console.log(err);
+      // console.log(err);
       next(new AuthError('Неправильные почта или пароль'));
     });
 };

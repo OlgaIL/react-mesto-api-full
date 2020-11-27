@@ -1,0 +1,12 @@
+.form__edt-text_theme_dark{
+	
+	background-color: #000;
+	border: 1px solid #000;
+	border-bottom: 2px solid rgba(256,256,256,0.2); 
+	color:#fff;
+}
+
+.form__edt-text_theme_dark:focus {
+	outline-style: none;
+	border: 1px solid #fff;
+}

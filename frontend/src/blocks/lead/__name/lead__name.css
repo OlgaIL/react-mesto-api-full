@@ -1,0 +1,33 @@
+.lead__name {
+	font-style: normal;
+	font-weight: 500;
+	font-size: 42px;
+	line-height: 1.33;
+	color: #fff;
+	margin: 0px;
+	padding-right: 17px;
+
+	max-width: 450px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+
+@media screen and (max-width: 700px) {
+	.lead__name {
+		align-content: center;
+
+	}
+}
+
+
+@media all and (max-width: 450px) {
+	.lead__name {
+		font-size: 27px;
+		line-height: 2.07;
+		max-width: 300px;
+		padding-right: 5px;
+	}
+  }
+

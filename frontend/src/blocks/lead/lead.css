@@ -1,0 +1,37 @@
+@import url(__avatar/lead__avatar.css);
+@import url(__avatar-cover/lead__avatar-cover.css);
+@import url(__profile-info/lead__profile-info.css);
+@import url(__profile-header/lead__profile-header.css);
+@import url(__name/lead__name.css);
+@import url(__edit-button/lead__edit-button.css);
+@import url(__text/lead__text.css);
+@import url(__add-button/lead__add-button.css);
+
+
+.lead {
+	display: grid;
+	grid-template-columns: 120px 1fr 150px;
+	grid-column-gap: 30px;
+	padding: 36px 0px 47px 0px;
+	align-items: center;
+}
+
+
+@media screen and (max-width: 900px) {
+.lead {
+	padding-left: 19px;
+	padding-right: 19px;
+	}
+}
+
+
+@media all and (max-width: 700px) {
+	.lead {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+		padding-top: 38px;
+		padding-bottom: 36px;
+	}
+}

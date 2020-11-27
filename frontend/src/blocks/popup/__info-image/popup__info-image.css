@@ -1,0 +1,18 @@
+.popup__info-image {
+	background-image: url(../../../images/success.svg);
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+	width: 120px;
+	height: 120px;
+	margin-bottom: 32px;
+	border: none;
+}
+
+@media all and (max-width: 500px) {
+	.popup__info-image {
+		margin-bottom: 40px;
+	}
+
+}

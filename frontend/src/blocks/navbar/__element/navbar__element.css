@@ -1,0 +1,18 @@
+.navbar__element{
+font-weight: 500;  /*500*/
+font-size: 18px;
+line-height: 1.2;
+color: #fff;
+text-decoration: none;
+transition: opacity .4s;
+margin-left: 24px;
+}
+
+
+
+
+@media all and (max-width: 450px) {
+	.navbar__element{
+		font-size: 14px;
+	}
+}

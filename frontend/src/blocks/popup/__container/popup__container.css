@@ -1,0 +1,10 @@
+.popup__container {
+	width: 477px;
+}
+
+@media all and (max-width: 500px) {
+	.popup__container {
+		width: 90%;
+		min-width: 300px;
+	}
+}

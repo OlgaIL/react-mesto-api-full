@@ -1,0 +1,14 @@
+.lead__profile-header {
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: baseline;
+	display: flex;
+}
+
+@media all and (max-width: 450px) {
+	.lead__profile-header {
+		padding-top: 10px;
+		justify-content: baseline;
+		align-items: baseline;
+	}
+  }

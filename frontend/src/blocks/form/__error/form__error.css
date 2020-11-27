@@ -1,0 +1,30 @@
+.form__error {
+font-style: normal;
+font-weight: normal;
+font-size: 12px;
+line-height: 1.25;
+
+color: #f00;
+
+
+display: block;
+margin: 0 0 13px 0;
+
+height: 17px;
+}
+
+
+.form__error:nth-of-type(2) {
+	margin-bottom:31px;
+}
+
+
+
+@media all and (max-width: 500px) {
+	.form__error {
+		margin-bottom:10px;
+	}
+	.form__error:nth-of-type(2) {
+		margin-bottom:25px;
+	}
+}

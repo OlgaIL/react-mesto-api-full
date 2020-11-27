@@ -1,0 +1,15 @@
+.form__submit_disable{
+background-color: #fff;
+color: #000;
+border: 1px solid #000;
+opacity: .2;
+}
+
+.form__submit_disable:hover {
+	background: #fff;
+}
+
+.form__submit_disable:focus {
+	background:#fff;
+	outline-style: none;
+}

@@ -1,0 +1,15 @@
+.form__submit_theme_dark{
+	background-color: #fff;
+	color: #000;
+	margin-bottom: 15px;
+}
+
+
+.form__submit_theme_dark:hover {
+	background: rgba(250, 250, 250, 0.8);
+}
+
+.form__submit_theme_dark:focus {
+  background: rgba(250, 250, 250, 0.8);
+	outline-style: none;
+}

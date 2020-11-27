@@ -1,0 +1,39 @@
+.lead__avatar-cover{
+	display: block; 
+	position: relative;
+}
+
+
+.lead__avatar-cover:after { 
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-image: url(../../../images/edit.svg);
+	background-repeat: no-repeat;
+	background-position: center;
+	opacity: 0; 
+	transition: opacity .5s;
+}
+
+.lead__avatar-cover:before {
+	content: ''; 
+	position: absolute; 
+	top: 0; left: 0; 
+	right: 0; 
+	bottom: 0; 
+	background: rgba(0,0,0,.8);
+	opacity: 0;
+	transition: opacity .5s;
+}
+
+.lead__avatar-cover:hover:before {
+	opacity: 1;
+}
+
+.lead__avatar-cover:hover:after {
+	opacity: 1;
+}
+

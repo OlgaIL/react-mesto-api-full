@@ -1,0 +1,19 @@
+.popup__container_infotext {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	box-sizing: border-box;
+	max-width: 430px;
+
+}
+
+	@media all and (max-width: 500px) {
+		.popup__container_infotext {
+			width: 80%;
+			min-width: 280px;
+			flex-direction: column-reverse;
+			align-items: center;
+
+		}
+	}
+	

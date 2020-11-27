@@ -1,0 +1,9 @@
+.element__name {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	padding: 21px 21px 24px 21px;
+	background-color: #fff;
+	border-radius: 0px 0px 10px 10px;
+}

@@ -1,0 +1,18 @@
+@import url(__element/navbar__element.css);
+@import url(__button/navbar__button.css);
+
+
+
+.navbar{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: row;
+}
+
+@media screen and (max-width: 900px) {
+	.navbar {
+		padding-right: 27px;
+		}
+  }

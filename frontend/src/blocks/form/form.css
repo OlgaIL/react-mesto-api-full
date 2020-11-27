@@ -1,0 +1,25 @@
+
+@import url(__title/form__title.css);
+@import url(__title/_theme/form__title_theme_dark.css);
+@import url(__edit/form__edit.css);
+@import url(__edit/_theme/form__edit_theme_dark.css);
+@import url(__edt-text/form__edt-text.css);
+@import url(__edt-text/_type/form__edt-text_type_error.css);
+@import url(__edt-text/_theme/form__edt-text_theme_dark.css);
+@import url(__close/form__close.css);
+@import url(__submit/form__submit.css);
+@import url(__submit/_theme/form__submit_theme_dark.css);
+@import url(__submit/_disable/form__submit_disable.css);
+@import url(__error/form__error.css);
+@import url(__link/form__link.css);
+@import url(__element-login/form__element-login.css);
+
+
+
+.form {
+	display: flex;
+	flex-direction: row;
+	justify-content:  flex-start;
+	align-items: flex-start;
+	font-family: 'Inter', Arial, sans-serif;
+}

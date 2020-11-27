@@ -1,0 +1,14 @@
+.form__edit_theme_dark{
+	background-color: #000;
+	margin-top: 60px;
+	margin-bottom: 80px;
+	padding: 0px;
+
+	max-height: 100%;
+	align-self: stretch;
+
+
+	justify-content: space-between;
+	align-items: center;
+	
+}

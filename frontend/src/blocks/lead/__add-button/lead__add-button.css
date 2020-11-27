@@ -1,0 +1,31 @@
+.lead__add-button {
+	border: 1px solid #fff;
+
+	width: 150px;
+	height: 50px;
+
+	background-image: url(../../../images/add.png);
+	background-size: initial;
+	background-repeat: no-repeat;
+	background-position: center;
+	box-sizing: border-box;
+	cursor: pointer;
+	background-color: unset;
+	padding: 0px;
+	transition: opacity .4s;
+
+}
+
+.lead__add-button:hover {
+	opacity: .6;
+}
+
+.lead__add-button:focus {
+	outline-style: none;
+}
+
+@media screen and (max-width: 700px) {
+	.lead__add-button {
+		width: 100%;
+	}
+}

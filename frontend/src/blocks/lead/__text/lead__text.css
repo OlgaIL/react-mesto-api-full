@@ -1,0 +1,37 @@
+.lead__text {
+	font-style: normal;
+	font-weight: normal;
+	font-size: 18px;
+	line-height: 1.22;
+	margin: 16px 0px 0px 0px;
+
+	max-width: 350px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+
+@media screen and (max-width: 700px) {
+	.lead__text {
+		margin-top: 14px;
+		justify-self: center;
+		margin-bottom: 36px;
+		max-width: 450px;
+	}
+}
+
+@media screen and (min-width: 850px) {
+	.lead__text {
+		max-width: 520px;
+	}
+}
+
+
+@media all and (max-width: 450px) {
+	.lead__text {
+		font-size: 14px;
+		line-height: 1.21;
+		max-width: 300px;
+	}
+  }

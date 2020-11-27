@@ -1,45 +1,67 @@
 /* eslint-disable no-console */
-
 const User = require('../models/user');
-
-const createUser = async (req, res) => {
-  try {
-    const { name, about, avatar } = req.body;
-    const user = await User.create({ name, about, avatar });
-    res.status(200).send(user);
-  } catch (err) {
-    if (err.name === 'ValidationError') {
-      res.status(400).send({ message: 'Переданы некорректные данные в метод создания пользователя' });
-    } else {
-      res.status(500).send({ message: 'Произошла ошибка на сервере' });
-    }
-  }
-};
-
 /** const usersDataPath = path.join(__dirname, '..', 'data', 'users.json'); */
 
-const getUsers = async (req, res) => {
+const NotFoundError = require('../errors/not-found-err');
+const NoValideDataError = require('../errors/novalid-data-err');
+
+const getUsers = async (req, res, next) => {
   try {
     const users = await User.find({});
     res.status(200).send(users);
   } catch (err) {
-    res.status(500).send({ message: 'Произошла ошибка на сервере' });
+    next(err);
   }
 };
 
-const getUser = async (req, res) => {
+const getUserForID = async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id);
     if (!user) {
-      res.status(404).send({ message: 'Пользователь не найден' });
+    //  res.status(404).send({ message: 'Пользователь не найден' });
+      throw new NotFoundError('Пользователь не найден');
     } else { res.status(200).send(user); }
   } catch (err) {
-    if (err.name === 'CastError') {
-      res.status(400).send({ message: 'Не коррректный id' });
-    } else {
-      res.status(500).send({ message: 'Произошла ошибка на сервере' });
-    }
+    if (err.name === 'CastError') next(new NoValideDataError('Не корректный id'));
+    next(err);
   }
 };
 
-module.exports = { getUsers, getUser, createUser };
+const getUser = async (req, res, next) => {
+  try {
+    // console.log(req.user._id);
+    const user = await User.findById(req.user._id);
+    if (!user) {
+      throw new NotFoundError('Пользователь не найден');
+    } else { res.status(200).send(user); }
+  } catch (err) {
+    if (err.name === 'CastError') next(new NoValideDataError('Не корректный id'));
+    next(err);
+  }
+};
+
+const putUser = async (req, res, next) => {
+  try {
+    const { name, about } = req.body;
+    const user = await User.findByIdAndUpdate(req.user._id, { name, about }, { new: true });
+    res.status(200).send(user);
+  } catch (err) {
+    if (err.name === 'ValidationError') next(new NoValideDataError('Переданы некорректные данные в метод обновления пользователя'));
+    next(err);
+  }
+};
+
+const putAvatarUser = async (req, res, next) => {
+  try {
+    const { avatar } = req.body;
+    const user = await User.findByIdAndUpdate(req.user._id, { avatar }, { new: true });
+    res.status(200).send(user);
+  } catch (err) {
+    if (err.name === 'ValidationError') next(new NoValideDataError('Переданы некорректные данные в метод обновления пользователя'));
+    next(err);
+  }
+};
+
+module.exports = {
+  getUsers, getUser, getUserForID, putUser, putAvatarUser,
+};

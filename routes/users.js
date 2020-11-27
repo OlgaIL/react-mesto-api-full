@@ -1,8 +1,42 @@
 const router = require('express').Router();
-const { getUsers, getUser, createUser } = require('../controllers/users.js');
+const { celebrate, Joi, Segments } = require('celebrate');
+const {
+  getUsers, getUser, getUserForID, putUser, putAvatarUser,
+} = require('../controllers/users.js');
 
-router.get('/', getUsers);
-router.get('/:id', getUser);
-router.post('/', createUser);
+router.get('/', celebrate({
+  [Segments.HEADERS]: Joi.object({
+    authorization: Joi.string().required().length(179),
+  }).unknown(true),
+}), getUsers);
+
+router.get('/me', celebrate({
+  [Segments.HEADERS]: Joi.object({
+    authorization: Joi.string().required().length(179),
+  }).unknown(true),
+}), getUser);
+
+router.patch('/me', celebrate({
+  [Segments.HEADERS]: Joi.object({
+    authorization: Joi.string().required().length(179),
+  }).unknown(true),
+}), putUser);
+
+router.patch('/me/avatar', celebrate({
+  [Segments.HEADERS]: Joi.object({
+    authorization: Joi.string().required().length(179),
+  }).unknown(true),
+
+}), putAvatarUser);
+
+router.get('/:id', celebrate({
+  [Segments.PARAMS]: Joi.object({
+    id: Joi.string().alphanum().length(24),
+  }),
+  [Segments.HEADERS]: Joi.object({
+    authorization: Joi.string().required().length(179),
+  }).unknown(true),
+}),
+getUserForID);
 
 module.exports = router;

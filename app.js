@@ -2,10 +2,19 @@ const express = require('express');
 // const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const { errors } = require('celebrate');
+
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const userRout = require('./routes/users.js');
 const cardsRout = require('./routes/cards.js');
 const errorRout = require('./routes/error.js');
+const authRouter = require('./routes/auth.js');
+
+
+
+const auth = require('./middlewares/auth.js');
+const errHendle = require('./middlewares/error.js');
 
 // Слушаем 3000 порт
 const { PORT = 3000 } = process.env;
@@ -16,6 +25,7 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
+  useUnifiedTopology: true,
 });
 
 /** можно попробовать без bodyParser установки */
@@ -24,20 +34,28 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 
 app.use(bodyParser.json()); // для собирания JSON-формата
 app.use(bodyParser.urlencoded({ extended: true })); // для приёма веб-страниц внутри POST-запроса
-
 /** для подключения фронта */
 // app.use(express.static(path.join(__dirname, 'public')));
 
-app.use((req, res, next) => {
-  req.user = {
-    _id: '5fa58ad2d93ecf14d038f185', // вставьте сюда _id созданного в предыдущем пункте пользователя
-  };
-  next();
-});
+app.use(requestLogger); // подключаем логгер запросов
+
+
+// роуты, не требующие авторизации,
+// например, регистрация и логин
+app.use('/', authRouter);
+
+// авторизация
+app.use(auth);
 
 app.use('/users', userRout);
 app.use('/cards', cardsRout);
 app.all('*', errorRout);
+
+app.use(errorLogger); // подключаем логгер ошибок
+
+
+app.use(errors()); // обработчик ошибок celebrate
+app.use(errHendle);
 
 app.listen(PORT, () => {
   /** Если всё работает, консоль покажет, какой порт приложение слушает */

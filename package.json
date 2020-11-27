@@ -11,10 +11,15 @@
   "author": "Olga Ilyina",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "celebrate": "^13.0.4",
     "eslint-config-airbnb-base": "^14.2.0",
     "express": "^4.17.1",
-    "mongoose": "^5.10.11"
+    "express-winston": "^4.0.5",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.11",
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "eslint": "^7.12.1",

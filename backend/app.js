@@ -2,6 +2,7 @@ const express = require('express');
 // const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+var cors = require('cors');
 const { errors } = require('celebrate');
 
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -17,6 +18,7 @@ const errHendle = require('./middlewares/error.js');
 // Слушаем 3000 порт
 const { PORT = 3000 } = process.env;
 const app = express();
+app.use(cors());
 
 // подключаемся к серверу mongo mongodb://localhost:27017/mestodb
 mongoose.connect('mongodb://localhost:27017/mestodb', {

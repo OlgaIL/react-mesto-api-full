@@ -1,4 +1,5 @@
-export const BASE_URL = 'https://auth.nomoreparties.co';
+//export const BASE_URL = 'https://auth.nomoreparties.co'; 
+import { BASE_URL } from './constants';
 
 class Auth {
 	constructor(apiData) {
@@ -7,15 +8,15 @@ class Auth {
 	}
 
 
-
 	register (password, email) {
-		return fetch(`${BASE_URL}/signup`, {
+	// console.log(JSON.stringify({password, email}));
+		return fetch(`${BASE_URL}signup`, {
 			method: 'POST',
 			headers: this.headers,
 			body: JSON.stringify({password, email})
 			})
 			.then(response => {
-				//console.log(response);
+			// console.log(response);
 				if(!response.ok){
 					const errorMassage = {status: response.status};
 					if(response.status === 400){errorMassage.statusText = 'Некорректно заполнено одно из полей';}
@@ -28,8 +29,7 @@ class Auth {
 
 
 	authorize (password, email) {
-		return fetch(`${BASE_URL}/signin`, {
-			
+		return fetch(`${BASE_URL}signin`, {
 			method: 'POST',
 			headers: this.headers,
 			body: JSON.stringify({password, email})
@@ -50,7 +50,7 @@ class Auth {
 	getContent (token) {
 		this.headers.Authorization =  `Bearer ${token}`;
 		console.log(this.headers);
-			return fetch(`${BASE_URL}/users/me`, {
+			return fetch(`${BASE_URL}users/me`, {
 			method: 'GET',
 			headers: this.headers
 			})
@@ -68,7 +68,7 @@ class Auth {
 }
 
 const userAuth = new Auth({
-	baseUrl: 'https://auth.nomoreparties.co',
+	//baseUrl: 'https://olgail.students.nomoredomains.rocks',
 	headers: {
 		'Content-Type': 'application/json',
 		'Accept': 'application/json'
@@ -78,3 +78,4 @@ const userAuth = new Auth({
 
 
 export default userAuth;
+

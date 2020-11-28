@@ -1,3 +1,7 @@
+import { getToken } from './token';
+import { BASE_URL } from './constants';
+ 
+ 
  class Api {
     constructor(apiData) {
         this.baseUrl = apiData.baseUrl;
@@ -12,16 +16,24 @@
 	}
 
 
+	getHeaders(){
+		const token = getToken(); // тут мы получаем токен из localStorage
+		return {
+			...this.headers,
+			'Authorization': `Bearer ${token}`,
+		}
+	}
+
 	getInitialCards() {
 		return fetch(`${this.baseUrl}cards`, {
-			headers: this.headers
+			headers: this.getHeaders()
 		})
 			.then(this._handleOriginalResponse);
 	}
 
 	getInitialUser() {
 		return fetch(`${this.baseUrl}users/me`, {
-			headers: this.headers
+			headers: this.getHeaders()
 		})
 		.then(this._handleOriginalResponse);
 	}
@@ -29,7 +41,7 @@
 	putUserInfo(item) {
 		return fetch(`${this.baseUrl}users/me`, {
 			method: 'PATCH',
-			headers: this.headers,
+			headers: this.getHeaders(),
 			body: JSON.stringify(item)
 		})
 		.then(this._handleOriginalResponse);
@@ -41,7 +53,7 @@
 		console.log(avatar);
 		return fetch(`${this.baseUrl}users/me/avatar`, {
 			method: 'PATCH',
-			headers: this.headers,
+			headers: this.getHeaders(),
 			body: JSON.stringify(avatar)
 		})
 		.then(this._handleOriginalResponse);
@@ -51,7 +63,7 @@
 	deleteCard (id) {
 		return fetch(`${this.baseUrl}cards/${id}`, {
 			method: 'DELETE',
-			headers: this.headers
+			headers: this.getHeaders()
 		})
 		.then(this._handleOriginalResponse);
 	}
@@ -59,7 +71,7 @@
 	createCard (item) { 
 		return fetch(`${this.baseUrl}cards`, {
 			method: 'POST',
-			headers: this.headers,
+			headers: this.getHeaders(),
 			body: JSON.stringify(item)
 		})
 		.then(this._handleOriginalResponse);
@@ -69,7 +81,7 @@
 	putLike (id) {
 			return fetch(`${this.baseUrl}cards/likes/${id}`, {
 				method: 'PUT',
-				headers: this.headers
+				headers: this.getHeaders()
 			})
 			.then(this._handleOriginalResponse);
 	}
@@ -77,7 +89,7 @@
 	deleteLike (id) {
 			return fetch(`${this.baseUrl}cards/likes/${id}`, {
 				method: 'DELETE',
-				headers: this.headers
+				headers: this.getHeaders()
 			})
 			.then(this._handleOriginalResponse);
 		}
@@ -91,9 +103,9 @@
 
 
 const api = new Api({
-	baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-14/',
+	baseUrl: `${BASE_URL}`,
 	headers: {
-		authorization: 'b5b09145-9ffa-43dc-a8a7-afd53c9e00bd',
+	//	authorization: 'b5b09145-9ffa-43dc-a8a7-afd53c9e00bd',
 		'Content-Type': 'application/json'
 	}
 });

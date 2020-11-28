@@ -58,7 +58,7 @@ function App() {
 				if (res) {
 					console.log(res);
 					const userData = {
-							email: res.data.email
+							email: res.email
 					}
 					setIsLoggedIn(true);
 					setUserData(userData);
@@ -78,6 +78,9 @@ function App() {
 			const data = await api.getInitialCards();
 			setCurrentUser(user);
 			setCards(data);
+			// console.log(user);
+			 //console.log(data);
+
 		} catch(error) { 
 			console.log(error);
 		} finally { 
@@ -86,8 +89,8 @@ function App() {
 	}
 
 	useEffect(() => {
-		loadUserInfoandCards();
-		}, []);
+		if (loggedIn) loadUserInfoandCards();
+		}, [loggedIn]);
 
 	useEffect(() => {
 			tokenCheck();

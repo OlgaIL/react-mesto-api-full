@@ -1,1 +1,1 @@
-export const BASE_URL = 'https://olgail.students.nomoredomains.rocks/';
+export const BASE_URL = 'https://olgai.students.nomoredomains.rocks/';

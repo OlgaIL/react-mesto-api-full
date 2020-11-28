@@ -49,7 +49,7 @@ class Auth {
 
 	getContent (token) {
 		this.headers.Authorization =  `Bearer ${token}`;
-		console.log(this.headers);
+	// console.log(this.headers);
 			return fetch(`${BASE_URL}users/me`, {
 			method: 'GET',
 			headers: this.headers

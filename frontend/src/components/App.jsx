@@ -56,7 +56,7 @@ function App() {
 
 		userAuth.getContent(jwt).then((res) => {
 				if (res) {
-					console.log(res);
+				// console.log(res);
 					const userData = {
 							email: res.email
 					}

@@ -10,19 +10,21 @@ function Card (props) {
 		`element__delete ${isOwn ? 'element__delete' : 'element__delete_disable'}`
 		); 
 
-		const isLiked = props.likes.some(i => i._id === currentUser._id);
-		const cardLikeClassName  =  (
+	//	const isLiked = props.likes.some(i => i._id === currentUser._id);
+		/** const cardLikeClassName  =  (
 				`element__like${isLiked ? ' element__like_active' : ''}`
-				);
+				); */
 
 
 		function handleClick () {
 				props.onCardClick({name: props.name, link: props.link});
 		}
 
-		function handleLikeClick () {
+	/**	function handleLikeClick () {
 				props.onCardLike(props);
-		}
+		}  
+		<button type="button" className={cardLikeClassName} title="Нравится" onClick={handleLikeClick}></button>
+		<div className="element__likecount">{props.likes.length}</div>  */
 
 		function handleDeleteClick () {
 				props.onCardDelete(props);
@@ -35,8 +37,7 @@ function Card (props) {
 							<div className="element__name">
 									<h3 className="element__title">{props.name}</h3>
 									<div className="element__likesinfo">
-											<button type="button" className={cardLikeClassName} title="Нравится" onClick={handleLikeClick}></button>
-											<div className="element__likecount">{props.likes.length}</div>
+										
 									</div>
 							</div>
 					</li>

@@ -8,6 +8,16 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
+
+    validate: {
+      validator(v) {
+        // eslint-disable-next-line no-useless-escape
+        return /^([a-z0-9\-\.])+@([a-z0-9\-]+\.)+([a-z]{2,6})$/gi.test(v);
+        //return /^[^@]+@[^@.]+\.[^@]+$/gi.test(v);
+            },
+      message: 'Ошибка в email адресе',
+    },
+
   },
 
   password: {

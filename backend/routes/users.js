@@ -20,6 +20,10 @@ router.patch('/me', celebrate({
   [Segments.HEADERS]: Joi.object({
     authorization: Joi.string().required().length(179),
   }).unknown(true),
+  [Segments.BODY]: Joi.object().keys({
+    name: Joi.string().required().min(2).max(30),
+    about: Joi.string().required().min(2).max(30),
+  }),
 }), putUser);
 
 router.patch('/me/avatar', celebrate({

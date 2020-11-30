@@ -10,11 +10,6 @@ const AuthError = require('../errors/auth-err');
 const createUser = (req, res, next) => {
   const { email, password } = req.body;
 
-  if (!email || !password) {
-    throw new NoValideDataError('Невалидные данные');
-    // return res.status(400).send({ message: 'Невалидные данные' });
-  }
-
   User.findOne({ email })
     .then((user) => {
       if (user) { throw new ConflictError('Пользователь с такой почтой уже зарегистрирован'); }

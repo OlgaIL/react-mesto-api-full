@@ -8,7 +8,7 @@
 
 [ссылка на проект] (https://olgai.students.nomoredomains.rocks)
 [ссылка на api] (https://api.olgai.students.nomoredomains.rocks)
-[публичный IP адрес] (https://84.201.179.201  )
+[публичный IP адрес] (http://84.201.179.201  )
 
 
 

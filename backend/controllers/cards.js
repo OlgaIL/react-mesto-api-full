@@ -16,8 +16,8 @@ const getCards = async (req, res, next) => {
 
 const createCard = async (req, res, next) => {
   try {
-    const ownerObj = await User.findById(req.user._id);
-    const card = await Card.create({ owner: ownerObj, ...req.body });
+   // const ownerObj = await User.findById(req.user._id);
+    const card = await Card.create({ owner: req.user._id, ...req.body });
     res.status(200).send(card);
   } catch (err) {
     if (err.name === 'ValidationError') next(new NoValideDataError('Переданы некорректные данные в метод создания карточки'));

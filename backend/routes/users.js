@@ -31,6 +31,11 @@ router.patch('/me/avatar', celebrate({
     authorization: Joi.string().required().length(179),
   }).unknown(true),
 
+  [Segments.BODY]: Joi.object().keys({
+    // eslint-disable-next-line no-useless-escape
+    avatar: Joi.string().required().pattern(new RegExp('^https?:\/\/([w{3}\.]?)([a-z0-9\-]+\.)+([a-z]{2,6})(\/.*)*$')),
+
+  }),
 }), putAvatarUser);
 
 router.get('/:id', celebrate({

@@ -1,6 +1,8 @@
 /* eslint-disable max-len */
 const mongoose = require('mongoose');
+
 const bcrypt = require('bcryptjs'); // импортируем bcrypt
+const validator = require('validator');
 
 const userSchema = new mongoose.Schema({
 
@@ -8,15 +10,15 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-
     validate: {
-      validator(v) {
-        // eslint-disable-next-line no-useless-escape
-        return /^([a-z0-9\-\.])+@([a-z0-9\-]+\.)+([a-z]{2,6})$/gi.test(v);
-        //return /^[^@]+@[^@.]+\.[^@]+$/gi.test(v);
-            },
+      validator: validator.isEmail,
       message: 'Ошибка в email адресе',
+      isAsync: false,
     },
+    /** validate: {
+      validator(v) {  return /^([a-z0-9\-\.])+@([a-z0-9\-]+\.)+([a-z]{2,6})$/gi.test(v);  },
+      message: 'Ошибка в email адресе',
+    }, */
 
   },
 

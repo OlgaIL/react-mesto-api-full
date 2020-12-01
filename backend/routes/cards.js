@@ -11,7 +11,7 @@ router.get('/', getCards);
 router.post('/', celebrate({
   [Segments.BODY]: Joi.object().keys({
     name: Joi.string().required().min(2).max(20),
-    link: Joi.string().required(),
+    link: Joi.string().required().pattern(new RegExp('^https?:\/\/([w{3}\.]?)([a-z0-9\-]+\.)+([a-z]{2,6})(\/.*)*$')),
   }),
 }),
 createCard);

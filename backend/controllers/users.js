@@ -43,7 +43,11 @@ const getUser = async (req, res, next) => {
 const putUser = async (req, res, next) => {
   try {
     const { name, about } = req.body;
-    const user = await User.findByIdAndUpdate(req.user._id, { name, about }, { new: true, runValidators: true });
+    const user = await User.findByIdAndUpdate(
+      req.user._id,
+      { name, about },
+      { new: true, runValidators: true },
+    );
     res.status(200).send(user);
   } catch (err) {
     if (err.name === 'ValidationError') next(new NoValideDataError('Переданы некорректные данные в метод обновления пользователя'));
@@ -54,7 +58,11 @@ const putUser = async (req, res, next) => {
 const putAvatarUser = async (req, res, next) => {
   try {
     const { avatar } = req.body;
-    const user = await User.findByIdAndUpdate(req.user._id, { avatar }, { new: true,  runValidators: true });
+    const user = await User.findByIdAndUpdate(
+      req.user._id,
+      { avatar },
+      { new: true, runValidators: true },
+    );
     res.status(200).send(user);
   } catch (err) {
     if (err.name === 'ValidationError') next(new NoValideDataError('Переданы некорректные данные в метод обновления пользователя'));

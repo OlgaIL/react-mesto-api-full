@@ -8,7 +8,7 @@ const ConflictError = require('../errors/conflict-err');
 const AuthError = require('../errors/auth-err');
 
 const createUser = (req, res, next) => {
-  const { email, password } = req.body;
+  const { email } = req.body;
 
   User.findOne({ email })
     .then((user) => {

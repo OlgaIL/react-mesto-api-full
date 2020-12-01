@@ -2,7 +2,7 @@ const express = require('express');
 // const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-var cors = require('cors');
+const cors = require('cors');
 const { errors } = require('celebrate');
 
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -38,7 +38,6 @@ app.use(bodyParser.urlencoded({ extended: true })); // для приёма ве�
 // app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(requestLogger); // подключаем логгер запросов
-
 
 app.get('/crash-test', () => {
   setTimeout(() => {

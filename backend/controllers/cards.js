@@ -7,7 +7,7 @@ const ConflictError = require('../errors/conflict-err');
 
 const getCards = async (req, res, next) => {
   try {
-    const cards = await Card.find({}).populate('owner').sort({'createdAt': -1});
+    const cards = await Card.find({}).populate('owner').sort({ createdAt: -1 });
     res.status(200).send(cards);
   } catch (err) {
     next(err);

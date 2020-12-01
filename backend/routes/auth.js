@@ -15,7 +15,8 @@ router.post('/signup', celebrate({
     email: Joi.string().required(),
     password: Joi.string().required().min(8),
     name: Joi.string().min(2).max(30),
-    avatar: Joi.string().pattern(RegExp('^https?:\/\/([w{3}\.]?)([a-z0-9\-]+\.)+([a-z]{2,6})(\/.*)*$')),
+    // pattern(RegExp('^https?:\/\/([w{3}\.]?)([a-z0-9\-]+\.)+([a-z]{2,6})(\/.*)*$')),
+    avatar: Joi.string(),
     about: Joi.string().min(2).max(30),
 
   }),

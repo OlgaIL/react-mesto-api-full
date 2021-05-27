@@ -1,7 +1,6 @@
 {
   "name": "mesto-react",
   "version": "0.1.0",
-  "homepage": "index.js",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -15,7 +14,7 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "npm run build && scp -r ./build/* zxolga10@84.201.179.201:/home/zxolga10/react-mesto-api-full/frontend",
+    "deploy": "npm run build && scp -r ./build/* zxolga10@84.252.139.233:/home/zxolga10/react-mesto-api-full/frontend/build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

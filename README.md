@@ -5,13 +5,13 @@
 Практическое применение базовых знаний по серверой разработке с ипользованием Node.js, сервер Express, БД MongoDB.
  - создание базовых функций REST API для работы с БД MONGO DB
 
-*********
-[ссылка на проект] (https://olgai.students.nomoredomains.rocks)
+************************
+[ссылка на проект] (https://mesto.olgailyina.ru)
 ***********
-[ссылка на api] (https://api.olgai.students.nomoredomains.rocks)
+[ссылка на api] (https://api.olgailyina.ru)
 
 ************
-[публичный IP адрес] (http://84.201.179.201  )
+
 
 
 
